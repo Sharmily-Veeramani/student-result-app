@@ -3,11 +3,15 @@ pipeline {
 
     stages {
 
-        stage('Test Minikube') {
+        stage('Start Minikube') {
             steps {
-                bat 'whoami'
-                bat 'minikube profile list'
-                bat 'minikube status'
+                bat 'minikube start --driver=docker'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'minikube image build student-result:1.0 .'
             }
         }
 
