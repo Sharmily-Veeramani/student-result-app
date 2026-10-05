@@ -2,9 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Docker Image') {
+
+        stage('Test Minikube') {
             steps {
-                bat 'minikube image build student-result:1.0 .'
+                bat 'whoami'
+                bat 'minikube profile list'
+                bat 'minikube status'
             }
         }
 
@@ -27,6 +30,7 @@ pipeline {
         success {
             echo 'Student Result application deployed successfully.'
         }
+
         failure {
             echo 'Deployment failed. Check the Jenkins console output.'
         }
