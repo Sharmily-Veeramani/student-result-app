@@ -3,11 +3,13 @@ pipeline {
 
     stages {
 
-        stage('Start Minikube') {
-            steps {
-                bat 'minikube start --driver=docker'
-            }
-        }
+        stage('Check Kubernetes') {
+    steps {
+        bat 'whoami'
+        bat 'kubectl config current-context'
+        bat 'kubectl get nodes'
+    }
+}
 
         stage('Build Docker Image') {
             steps {
